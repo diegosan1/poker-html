@@ -1,0 +1,163 @@
+<link href="css/formulario.css" rel="stylesheet" id="bootstrap-css">
+<script src="js/login.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+<script>
+
+function myFunction() {
+  var x = document.getElementById("esconder");
+  if (x.style.display = "none") {
+	var countdown = 30 * 60 * 1000;
+	var timerId = setInterval(function(){
+		countdown -= 1000;
+		var min = Math.floor(countdown / (60 * 1000));
+		var sec = Math.floor((countdown - (min * 60 * 1000)) / 1000);
+		if (countdown <= 0) {
+		alert("30 min!");
+		clearInterval(timerId);
+		} else {
+		$("#countTime").html(min + " : " + sec);
+		}
+		}, 1000);
+  
+    x.style.display = "block";
+  } else {
+    x.style.display = "none";
+  }
+}
+</script>
+
+<script>
+function calc() {
+
+    var tenThousand
+    var fiveThousand
+    var oneThousand
+    var fiveHund
+    var oneHund
+    var twentyFive
+    var five
+	var vlMesa
+    var valorFinal
+    var diferenca
+	var totalFichas
+	var vlMesaInt
+	
+	vlMesa = parseInt(document.getElementById("valormesa").value)
+	tenThousand = document.getElementById("dez").value
+	fiveThousand = document.getElementById("cincmil").value
+	oneThousand = document.getElementById("ummil").value
+	fiveHund = document.getElementById("quinhento").value
+	oneHund = document.getElementById("centena").value
+	twentyFive = document.getElementById("vinteecinco").value
+	five = document.getElementById("cincos").value
+	
+        var dezMil     = 0 
+        var cincoMil   = 0 
+        var mil        = 0 
+        var quinhentos = 0 
+        var cem        = 0
+        var vinteCinco = 0 
+        var cinco      = 0 
+
+        if (tenThousand != null) {
+            dezMil = parseInt(tenThousand) * 10000; 
+        }
+        if (fiveThousand != null) {
+            cincoMil = parseInt(fiveThousand) * 5000;
+        }
+        if (oneThousand != null) {
+            mil = parseInt(oneThousand) * 1000; 
+        }
+        if (fiveHund != null) {
+            quinhentos = parseInt(fiveHund) * 500; 
+        }
+        if (oneHund != null) {
+            cem = parseInt(oneHund) * 100; 
+        }
+        if (twentyFive != null) {
+            vinteCinco = parseInt(twentyFive) * 25;
+        }
+        if (five != null) {
+            cinco = parseInt(five) * 5; 
+        }
+		totalFichas = (dezMil + cincoMil + mil + quinhentos + cem + vinteCinco + cinco)	
+        diferenca = Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(totalFichas - vlMesa)
+		valorFinal = Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(vlMesa + (totalFichas - vlMesa))
+		
+		if ((totalFichas - vlMesa) >= 0){
+			$("#vldiferenca").html(diferenca)
+			document.getElementById("vldiferenca").style.color = "green";
+		}
+		if ((totalFichas - vlMesa) < 0){
+			$("#vldiferenca").html(diferenca)
+			document.getElementById("vldiferenca").style.color = "red";
+		}
+		
+		$("#vlfinal").html(valorFinal)
+		
+}
+
+function goBack() {
+        window.history.back()
+    } 
+ </script>
+
+	<button class="btn btn-lg btn-primary btn-block btn-signin" onclick="myFunction()">&nbsp;Relógio&nbsp;</button><div id="esconder"><h1 id="countTime"></h1></div>
+	
+    <div class="container">
+        <div class="card card-container">
+            <div class="opcoes">
+			<p><label>Crupiê: <br><br></label>
+			
+			<select id="crupie">
+			  <option value="jose">José</option>
+			  <option value="marcos">Marcos</option>
+			  <option value="carlos">Carlos</option>
+			</select>
+			</div></p>
+			
+			<div class="opcoes">
+			<p><label><br>Jogo: <br><br></label>
+			
+			<select id="jogo">
+			  <option value="blackjack">Blackjack</option>
+			  <option value="roleta">Roleta</option>
+			  <option value="poker">Poker</option>
+			</select>
+			</div></p>
+			
+			<p><label><br>Valor inicial: <br><br></label>
+			<input type="text" id="valormesa" value="200000">
+			</p>
+			
+			<p><label><br>R$10.000<br></label>
+			<input type="number" id="dez" placeholder="Quantidade fichas">
+			</p>
+			<p><label><br>R$5.000<br></label>
+			<input type="number" id="cincmil" placeholder="Quantidade fichas">
+			</p>
+			<p><label><br>R$1.000<br></label>
+			<input type="number" id="ummil" placeholder="Quantidade fichas">
+			</p>
+			<p><label><br>R$500<br></label>
+			<input type="number" id="quinhento" placeholder="Quantidade fichas">
+			</p>
+			<p><label><br>R$100<br></label>
+			<input type="number" id="centena" placeholder="Quantidade fichas">
+			</p>
+			<p><label><br>R$25<br></label>
+			<input type="number" id="vinteecinco" placeholder="Quantidade fichas">
+			</p>
+			<p><label><br>R$5<br></label>
+			<input type="number" id="cincos" placeholder="Quantidade fichas">
+			</p>
+			
+			<button class="btn btn-lg btn-primary btn-block btn-signin" onclick="calc()">&nbsp;Calcular&nbsp;</button>
+			
+			<p>Valor Final: <label id="vlfinal"></label></p>
+			<p>Diferença: <label id="vldiferenca"></label></p>
+			
+			<button class="btn btn-lg btn-primary btn-block btn-signin" onclick="goBack()">&nbsp;Voltar&nbsp;</button>
+
+    </div><!-- /container -->
